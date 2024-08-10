@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class WorldMixin {
     @Inject(at = @At("HEAD"), method = "getTopY", cancellable = true)
     public void getTopPosition(Heightmap.Type heightmap, int x, int z, CallbackInfoReturnable<Integer> cir) {
-        if (heightmap == Heightmap.Type.MOTION_BLOCKING || MinecraftClient.getInstance().world != null) {
+        if (heightmap == Heightmap.Type.MOTION_BLOCKING && MinecraftClient.getInstance().world != null) {
             int i = -65;
             for (int y = 0; y!=255; y++) {
                 BlockState state = MinecraftClient.getInstance().world.getBlockState(new BlockPos(x, y, z));
