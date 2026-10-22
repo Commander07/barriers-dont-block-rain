@@ -1,5 +1,6 @@
 package io.github.commander07.bdbr.mixin;
 
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.BarrierBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
@@ -27,7 +28,7 @@ public abstract class LevelMixin {
             pos.set(i, y, j);
             BlockState state = level.getBlockState(pos);
 
-            if ((state.blocksMotion() || !state.getFluidState().isEmpty())
+            if ((state.isSolid() || !state.getFluidState().isEmpty())
                     && !(state.getBlock() instanceof BarrierBlock)) {
                 cir.setReturnValue(y + 1);
                 return;
